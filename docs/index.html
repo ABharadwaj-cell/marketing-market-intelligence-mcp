@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Capability Intelligence | Demo</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0d1322;color:#eef2fa}
+*{box-sizing:border-box}body{max-width:1140px;margin:0 auto;padding:36px 24px}
+h1{font-size:clamp(2rem,4vw,3rem);margin:8px 0}p{line-height:1.6;color:#b3bfd4}
+a{color:#9dbdff}.note{background:#1a263d;border:1px solid #3b506d;padding:12px 16px;border-radius:12px;margin:24px 0}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}label{font-size:14px;color:#b3bfd4}
+select{background:#142037;color:#eef2fa;border:1px solid #425274;padding:10px 14px;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:16px}
+.card{background:#172239;border:1px solid #34425c;border-radius:14px;padding:20px}
+h2{margin:0 0 6px;font-size:20px}.tag{display:inline-block;border:1px solid #52688a;border-radius:100px;padding:4px 10px;font-size:12px;margin:5px 6px 3px 0;color:#c8d8f0}
+strong{color:#eef2fa}.small{font-size:13px}footer{margin-top:36px}
+</style>
+</head><body>
+<div class="small">UNIVERSAL MARKETING OS · WORKING PROTOTYPE</div>
+<h1>Capability-level competitor intelligence</h1>
+<p>Analyze competing products by exact capabilities, enhancements, buyer segment, narrative and opportunity. This public dashboard uses fictional demonstration records. The repository contains a separate runnable read-only MCP server.</p>
+<div class="note"><strong>Synthetic demonstration.</strong> Not a live market feed, model inference service or hosted MCP endpoint. No confidential business data.</div>
+<div class="toolbar"><label>Product category <select id="category"><option value="">All categories</option></select></label><label>Competitor <select id="competitor"><option value="">All competitors</option></select></label></div>
+<div id="summary" class="small"></div><div id="cards" class="grid" style="margin-top:16px"></div>
+<footer class="small">Source: <a href="https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp">GitHub repository</a>. Python logic in src/intelligence.py; automated tests in tests/.</footer>
+<script>
+const records=[
+{id:"SIG-001",competitor:"ExampleFlow",category:"Patient access",overlap:["online scheduling"],missing:["waitlist"],augmentations:["AI triage"],icp:["multisite clinic","dental group"],narrative:"Reduce booking friction",date:"2026-10-10"},
+{id:"SIG-002",competitor:"ExamplePay",category:"Payments",overlap:["text to pay"],missing:["card on file"],augmentations:["automated collections"],icp:["dental group"],narrative:"Collect earlier",date:"2026-10-11"},
+{id:"SIG-003",competitor:"ExampleFlow",category:"Patient intake",overlap:["dynamic forms","insurance card capture"],missing:[],augmentations:["document OCR"],icp:["multisite clinic"],narrative:"Reduce administrative burden",date:"2026-10-12"},
+{id:"SIG-004",competitor:"ExampleCare",category:"Patient engagement",overlap:["appointment reminders"],missing:["two way texting"],augmentations:["multilingual automation"],icp:[],narrative:"Improve patient responsiveness",date:"2026-10-13"}];
+const category=document.getElementById('category'),competitor=document.getElementById('competitor'),cards=document.getElementById('cards'),summary=document.getElementById('summary');
+for(const [el,values] of [[category,new Set(records.map(x=>x.category))],[competitor,new Set(records.map(x=>x.competitor))]])for(const v of [...values].sort()){const o=document.createElement('option');o.value=v;o.textContent=v;el.append(o)}
+function render(){const list=records.filter(x=>(!category.value||x.category===category.value)&&(!competitor.value||x.competitor===competitor.value));summary.textContent=list.length+' matching demonstration signals';cards.replaceChildren();for(const r of list){const card=document.createElement('article');card.className='card';const h=document.createElement('h2');h.textContent=r.competitor;card.append(h);for(const [title,val] of [['Category',r.category],['Narrative',r.narrative],['Capability overlap',r.overlap.join(', ')||'None'],['Other competitor capabilities',r.missing.join(', ')||'None'],['Augmentations',r.augmentations.join(', ')],['Shared ICPs',r.icp.join(', ')||'No overlap in demo'],['Observed',r.date]]){const p=document.createElement('p');p.className='small';const b=document.createElement('strong');b.textContent=title+': ';p.append(b,document.createTextNode(val));card.append(p)}cards.append(card)}}
+category.addEventListener('change',render);competitor.addEventListener('change',render);render();
+</script></body></html>
