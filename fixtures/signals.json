@@ -1,0 +1,75 @@
+[
+  {
+    "id": "SIG-001",
+    "competitor": "ExampleFlow",
+    "source_url": "https://example.org/market/exampleflow",
+    "observed_at": "2026-10-10",
+    "product_line": "patient access",
+    "capabilities": [
+      "online scheduling",
+      "waitlist"
+    ],
+    "augmentations": [
+      "AI triage"
+    ],
+    "icps": [
+      "multisite clinic",
+      "dental group"
+    ],
+    "narrative": "reduce booking friction"
+  },
+  {
+    "id": "SIG-002",
+    "competitor": "ExamplePay",
+    "source_url": "https://example.org/market/examplepay",
+    "observed_at": "2026-10-11",
+    "product_line": "payments",
+    "capabilities": [
+      "text to pay",
+      "card on file"
+    ],
+    "augmentations": [
+      "automated collections"
+    ],
+    "icps": [
+      "dental group"
+    ],
+    "narrative": "collect earlier"
+  },
+  {
+    "id": "SIG-003",
+    "competitor": "ExampleFlow",
+    "source_url": "https://example.org/market/exampleflow-forms",
+    "observed_at": "2026-10-12",
+    "product_line": "patient intake",
+    "capabilities": [
+      "dynamic forms",
+      "insurance card capture"
+    ],
+    "augmentations": [
+      "document OCR"
+    ],
+    "icps": [
+      "multisite clinic"
+    ],
+    "narrative": "reduce administrative burden"
+  },
+  {
+    "id": "SIG-004",
+    "competitor": "ExampleCare",
+    "source_url": "https://example.org/market/examplecare",
+    "observed_at": "2026-10-13",
+    "product_line": "patient engagement",
+    "capabilities": [
+      "two way texting",
+      "appointment reminders"
+    ],
+    "augmentations": [
+      "multilingual automation"
+    ],
+    "icps": [
+      "primary care"
+    ],
+    "narrative": "improve patient responsiveness"
+  }
+]
