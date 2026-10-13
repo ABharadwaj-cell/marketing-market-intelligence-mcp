@@ -1,0 +1,15 @@
+{
+  "brand": "Demo PracticeOS",
+  "approved_capabilities": [
+    "online scheduling",
+    "dynamic forms",
+    "text to pay",
+    "appointment reminders",
+    "insurance card capture"
+  ],
+  "icps": [
+    "dental group",
+    "multisite clinic"
+  ],
+  "scope": "synthetic"
+}
