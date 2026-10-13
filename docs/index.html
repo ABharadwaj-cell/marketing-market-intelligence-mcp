@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Marketing Capability Intelligence | Demo</title>
+<title>Competitor Product & Feature Intelligence | Founder-Friendly Demo</title><meta name="description" content="Explore a synthetic competitor analysis by product category, feature overlap, augmentation, and buyer segment. For founders, marketing directors and product marketers.">
 <style>
 :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0d1322;color:#eef2fa}
 *{box-sizing:border-box}body{max-width:1140px;margin:0 auto;padding:36px 24px}
@@ -17,11 +17,13 @@ strong{color:#eef2fa}.small{font-size:13px}footer{margin-top:36px}
 </style>
 </head><body>
 <div class="small">UNIVERSAL MARKETING OS · WORKING PROTOTYPE</div>
-<h1>Capability-level competitor intelligence</h1>
-<p>Analyze competing products by exact capabilities, enhancements, buyer segment, narrative and opportunity. This public dashboard uses fictional demonstration records. The repository contains a separate runnable read-only MCP server.</p>
+<h1>Understand which competitors actually matter</h1>
+<p>Built for founders running marketing themselves, product marketers and growth leaders. Compare the exact features, buyer groups and promises behind a competitor move before deciding whether it deserves your time.</p>
 <div class="note"><strong>Synthetic demonstration.</strong> Not a live market feed, model inference service or hosted MCP endpoint. No confidential business data.</div>
+<div class="note"><strong>Try this:</strong> Pick <em>Patient access</em>, then <em>ExampleFlow</em>. Look at where features overlap, which ones are unmatched to the demo company’s configured list, and what customer problem the competitor is selling. Your next step would be to verify the real product evidence, not publish a claim from this mock data.</div>
 <div class="toolbar"><label>Product category <select id="category"><option value="">All categories</option></select></label><label>Competitor <select id="competitor"><option value="">All competitors</option></select></label></div>
 <div id="summary" class="small"></div><div id="cards" class="grid" style="margin-top:16px"></div>
+<section class="note" aria-label="Decision guide"><strong>What can you decide from this?</strong> Which buyer segment and capability deserve further research. What you cannot conclude: that a business lacks an unmatched feature, that a claim is verified, or that this prototype generated leads or revenue. See the <a href="https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp/blob/main/docs/START_HERE.md">five-minute founder walkthrough</a> and the <a href="https://github.com/ABharadwaj-cell/marketing-revenue-lab">Revenue Lab</a> for how downstream outcomes could be evaluated.</section>
 <footer class="small">Source: <a href="https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp">GitHub repository</a>. Python logic in src/intelligence.py; automated tests in tests/.</footer>
 <script>
 const records=[
@@ -31,6 +33,6 @@ const records=[
 {id:"SIG-004",competitor:"ExampleCare",category:"Patient engagement",overlap:["appointment reminders"],missing:["two way texting"],augmentations:["multilingual automation"],icp:[],narrative:"Improve patient responsiveness",date:"2026-10-13"}];
 const category=document.getElementById('category'),competitor=document.getElementById('competitor'),cards=document.getElementById('cards'),summary=document.getElementById('summary');
 for(const [el,values] of [[category,new Set(records.map(x=>x.category))],[competitor,new Set(records.map(x=>x.competitor))]])for(const v of [...values].sort()){const o=document.createElement('option');o.value=v;o.textContent=v;el.append(o)}
-function render(){const list=records.filter(x=>(!category.value||x.category===category.value)&&(!competitor.value||x.competitor===competitor.value));summary.textContent=list.length+' matching demonstration signals';cards.replaceChildren();for(const r of list){const card=document.createElement('article');card.className='card';const h=document.createElement('h2');h.textContent=r.competitor;card.append(h);for(const [title,val] of [['Category',r.category],['Narrative',r.narrative],['Capability overlap',r.overlap.join(', ')||'None'],['Other competitor capabilities',r.missing.join(', ')||'None'],['Augmentations',r.augmentations.join(', ')],['Shared ICPs',r.icp.join(', ')||'No overlap in demo'],['Observed',r.date]]){const p=document.createElement('p');p.className='small';const b=document.createElement('strong');b.textContent=title+': ';p.append(b,document.createTextNode(val));card.append(p)}cards.append(card)}}
+function render(){const list=records.filter(x=>(!category.value||x.category===category.value)&&(!competitor.value||x.competitor===competitor.value));summary.textContent=list.length+' matching demonstration signals';cards.replaceChildren();for(const r of list){const card=document.createElement('article');card.className='card';const h=document.createElement('h2');h.textContent=r.competitor;card.append(h);for(const [title,val] of [['Category',r.category],['Narrative',r.narrative],['Capability overlap',r.overlap.join(', ')||'None'],['Capabilities not matched in demo configuration',r.missing.join(', ')||'None'],['Augmentations',r.augmentations.join(', ')],['Shared ICPs',r.icp.join(', ')||'No overlap in demo'],['Observed',r.date]]){const p=document.createElement('p');p.className='small';const b=document.createElement('strong');b.textContent=title+': ';p.append(b,document.createTextNode(val));card.append(p)}cards.append(card)}}
 category.addEventListener('change',render);competitor.addEventListener('change',render);render();
 </script></body></html>
